@@ -1,0 +1,8 @@
+flask
+mysql-connector-python
+flask_cors
+pyopenssl
+pyjwt
+requests
+pandas
+scikit-learn
