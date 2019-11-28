@@ -1,13 +1,20 @@
+import random
+
 from flask import Flask
+from flask_cors import CORS
 import  json
 from service.app_manager import AppManager
 from file_handler.handler import FileHandler as ch
 
 
 OK_STATUS = 200
+INTERNAL_SERVICE_ERROR = 500
+DATA_ERROR =[]
+
 
 app = Flask(__name__)
 app_manager = AppManager(ch.read_csv())
+CORS(app)
 
 def create_response(data,response_code=OK_STATUS):
     json_response = json.dumps({ 'response' :data,
@@ -17,8 +24,12 @@ def create_response(data,response_code=OK_STATUS):
 
 @app.route('/getApp')
 def get_app():
-   data = app_manager.assembly_csv_in_a_dict()
-   return create_response(data)
+    try:
+       data = app_manager.assembly_csv_in_a_dict()
+       random_number = random.randint(0, len(data))
+       return create_response(data[random_number])
+    except Exception as e :
+        return create_response([str(e),INTERNAL_SERVICE_ERROR])
 
 if __name__ == '__main__':
-   app.run()
+   app.run(port="5000")

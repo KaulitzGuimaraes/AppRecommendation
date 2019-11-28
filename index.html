@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>App Recommendation</title>
+    <link rel="stylesheet" href="starability-all.min.css">
+
+    <style>
+            .center {
+              margin: auto;
+              width: 80%;
+              padding: 10px;
+            }
+            .card-size{
+                height: 200px;
+            }
+            .scrollY{
+                height: 200px;
+                overflow-y: scroll;
+            }
+            </style>
+
+
+</head>
+
+
+<body>
+<div class="container">
+<div class="jumbotron">
+        <h1 class="display-4 text-center">Application Recommendation</h1>
+
+        <br/>
+        <br/>
+
+    <div class="row justify-content-center">
+    <div class="col-md-3"> <img id="image" width="200" height="200px"/></div>
+    <div class="col-md-8">
+            <div class="card text-white bg-dark mb-3 card-size" style="max-width: 100%;">
+                        <div class="card-header">Application Description</div>
+                        <div class="card-body scrollY">
+                          <h5 class="card-title text-center" id="name">  </h5>
+                          <p class="card-text" id="price">Price : </p>
+                          <p class="card-text" id="primeGenre">Genre : </p>
+                          <p class="card-text" id="primeGenre">Description : </p>
+                          <p class="card-text" id="desc"></p>
+                        </div>
+                      </div>
+                <!-- <div class="col-md-2">Name</div>
+                <div class="col-md-2"> <p id="name"></p></div> -->
+    
+           
+            <!-- <p id="price"></p>
+            <p id="primeGenre"></p> -->
+    </div>
+   
+    
+    <form>
+            <br/>
+            <br/>
+            <fieldset class="starability-basic"> 
+          
+              <input type="radio" id="rate5" name="rating" value="5" />
+              <label for="rate5" title="Amazing">5 stars</label>
+          
+              <input type="radio" id="rate4" name="rating" value="4" />
+              <label for="rate4" title="Very good">4 stars</label>
+          
+              <input type="radio" id="rate3" name="rating" value="3" />
+              <label for="rate3" title="Average">3 stars</label>
+          
+              <input type="radio" id="rate2" name="rating" value="2" />
+              <label for="rate2" title="Not good">2 stars</label>
+          
+              <input type="radio" id="rate1" name="rating" value="1" />
+              <label for="rate1" title="Terrible">1 star</label>
+            </fieldset>
+          </form>
+       
+  
+    </div>
+    
+</div>
+</div>
+</body>
+
+<script>
+ fetch('http://127.0.0.1:5000/getApp')
+  .then(response => response.json())
+  .then(json => {
+    let response = json['response']
+    document.querySelector("#image").setAttribute("src",response['imageUrl'])
+    document.querySelector("#name").textContent = response['name']
+    let price = response['price'] == 0 ? "FREE" : response['price']
+    document.querySelector("#price").textContent += price
+    document.querySelector("#primeGenre").textContent +=response['primeGenre']
+    document.querySelector("#desc").textContent =response['desc']
+   
+
+  })
+</script>
+</html>
