@@ -6,9 +6,7 @@ class KmeansModel :
         self.train_model()
 
     def train_model(self):
-        self.kmeans = KMeans(n_clusters=self.n_clusters)
-        self.kmeans.fit(self.csv.values)
-        self.kmeans_values = self.kmeans.predict(self.csv.values)
+        pass
 
     def get_clusters(self):
         return  self.kmeans_values
