@@ -15,15 +15,15 @@ del  df['ver']
 km = KmeansModel(df)
 b = km.get_clusters()
 a ={}
+print(df.head())
 
-
-df = pd.read_csv("./dataset/appleStore_description.csv")
-for i in df.values :
-    a[i[0]] = i[-1]
-
-
-with open("./dataset/desc.json","w") as l :
-        l.write(json.dumps(a,indent=4))
+# df = pd.read_csv("./dataset/appleStore_description.csv")
+# for i in df.values :
+#     a[i[0]] = i[-1]
+#
+#
+# with open("./dataset/desc.json","w") as l :
+#         l.write(json.dumps(a,indent=4))
 
 # # appmmgnt = AppManager(df)
 # buffer = set()

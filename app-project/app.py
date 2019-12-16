@@ -31,5 +31,13 @@ def get_app():
     except Exception as e :
         return create_response([str(e),INTERNAL_SERVICE_ERROR])
 
+@app.route('/getAppCluster')
+def get_app_cluster():
+    try:
+       data = app_manager.assembly_csv_in_a_dict()
+       return create_response(data[:10])
+    except Exception as e :
+        return create_response([str(e),INTERNAL_SERVICE_ERROR])
+
 if __name__ == '__main__':
-   app.run(port="5000")
+   app.run(port="5000",host="localhost")
