@@ -43,8 +43,13 @@
                             <div class="card-body scrollY">
                               <h5 class="card-title text-center" id="name">  </h5>
                               <p class="card-text" id="price">Price : </p>
+                              <p class="card-text" id="currency">Currency :&nbsp; </p>
                               <p class="card-text" id="primeGenre">Genre : </p>
-                              <p class="card-text" id="primeGenre">Description : </p>
+                              <p class="card-text" id="sizeMb">Size :&nbsp; </p>
+                              <p class="card-text" id="userRating">User Rating :&nbsp; </p>
+                              <p class="card-text" id="cont_rating">Count Rating :&nbsp; </p>
+
+                              <p class="card-text" >Description :&nbsp; </p>
                               <p class="card-text" id="desc"></p>
                 </div>
                 </div>
@@ -91,13 +96,26 @@
   .then(response => response.json())
   .then(json => {
     let response = json['response']
+      for (let i in document.querySelectorAll("p")){
+        try {
+             document.querySelectorAll("p")[i].textContent = document.querySelectorAll("p")[i].textContent.split(":")[0] + ": "
+        }catch (e) {
+
+        }
+
+      }
     document.querySelector("#image").setAttribute("src",response['imageUrl'])
     document.querySelector("#name").textContent = response['name']
     let price = response['price'] === 0 ? "FREE" : response['price']
     document.querySelector("#price").textContent = "Price : " + price
     document.querySelector("#primeGenre").textContent = "Genre : " + response['primeGenre']
     document.querySelector("#desc").textContent =response['desc']
+    document.querySelector("#sizeMb").textContent +=response['sizeMb']  + "MB"
+    document.querySelector("#userRating").textContent += response['userRating']
+    document.querySelector("#cont_rating").textContent += response['cont_rating']
+    document.querySelector("#currency").textContent += response['currency']
     document.querySelector("#usrMsg").textContent = ""
+    localStorage.setItem("index", response['index']);
    
 
   })
@@ -108,7 +126,7 @@
     document.querySelector("#usrMsg").textContent = " Finding a new app for you !!!"
   }
   function won(){
-    alert("UHULL")
+   window.location.href = `http://localhost:63343/AppRecommendation/yourapps.html`;
   }
   function fail(){
     alert("That's ok, we'll show you another App, maybe you'll like this new one !!!")
