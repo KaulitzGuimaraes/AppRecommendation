@@ -1,21 +1,19 @@
 from service.app_manager import  AppManager
 import  pandas as pd
-import  random
-import  json
-from machine_learning.Kmeans import KmeansModel
+
 df = pd.read_csv("./dataset/AppleStore.csv")
-del df['Unnamed: 0']
-del df['id']
-del df['track_name']
-del df['prime_genre']
-del df['cont_rating']
-del df['currency']
-del df['sup_devices.num']
-del  df['ver']
-km = KmeansModel(df)
-b = km.get_clusters()
-a ={}
-print(df.head())
+# del df['Unnamed: 0']
+# del df['id']
+# del df['track_name']
+# del df['prime_genre']
+# del df['cont_rating']
+# del df['currency']
+# del df['sup_devices.num']
+# del  df['ver']
+# km = KmeansModel(df)
+# b = km.get_clusters()
+# a ={}
+# print(df.head())
 
 # df = pd.read_csv("./dataset/appleStore_description.csv")
 # for i in df.values :
@@ -49,3 +47,6 @@ print(df.head())
 #     l.write(a)
 
 # print()
+
+df = df.sample(frac=1).reset_index(drop=True)
+df.to_csv("./dataset/AppleStore.csv")

@@ -46,7 +46,12 @@
                 <th scope="col">Icon</th>
                 <th scope="col">Name</th>
                 <th scope="col">Price</th>
-                <th scope="col">Genre</th>
+                <th scope="col">Currency </th>
+                 <th scope="col">Genre</th>
+                 <th scope="col">Size  </th>
+                <th scope="col">User Rating  </th>
+                <th scope="col">Count Rating  </th>
+
               </tr>
             </thead>
             <tbody id="table-body">
@@ -56,9 +61,9 @@
         </div>
         
       </div>
-      <div class="row justify-content-center ">
-        <button id="refresh" type="button" class="btn btn-dark" onclick="notifyUser()">start again</button>
-      </div>
+<!--      <div class="row justify-content-center ">-->
+<!--        <button id="refresh" type="button" class="btn btn-dark" onclick="notifyUser()">start again</button>-->
+<!--      </div>-->
     </div>
   </div>
    
@@ -67,7 +72,7 @@
 
 <script>
   function getApp() {
-    fetch('http://127.0.0.1:5000/getAppCluster')
+    fetch(`http://127.0.0.1:5000/getAppCluster?index=${localStorage['index']}`)
       .then(response => response.json())
       .then(json => {
         let response = json['response']
@@ -78,7 +83,11 @@
                       <td><img id="image" width="40px" height="40px" src="${response[pos]['imageUrl']}"/></td>
                       <td>${response[pos]['name']}</td>
                       <td>${ response[pos]['price'] === 0 ? "FREE" : response[pos]['price']}</td>
+                      <td>${response[pos]['currency']}</td>
                       <td>${response[pos]['primeGenre']}</td>
+                      <td>${response[pos]['sizeMb']}</td>
+                      <td>${response[pos]['userRating']}</td>
+                      <td>${response[pos]['cont_rating']}</td>
                     </tr>
       `
 
@@ -94,7 +103,7 @@
     document.querySelector("#usrMsg").textContent = " Finding a new app for you !!!"
   }
   function won() {
-    alert("UHULL")
+
   }
   function fail() {
     alert("That's ok, we'll show you another App, maybe you'll like this new one !!!")
