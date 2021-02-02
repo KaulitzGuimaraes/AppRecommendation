@@ -1,7 +1,7 @@
 FROM python:3.7.1
-RUN mkdir app
+VOLUME app
 COPY . /app
-RUN cd /app
+WORKDIR app
 RUN pwd
 RUN pip install --upgrade pip
 ENV HOST="0.0.0.0"
