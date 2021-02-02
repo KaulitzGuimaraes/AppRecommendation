@@ -1,6 +1,4 @@
 FROM python:3.7.1
-VOLUME /app
-COPY . /app
 WORKDIR /app
 RUN pip install --upgrade pip
 ENV HOST="0.0.0.0"
