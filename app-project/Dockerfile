@@ -1,8 +1,7 @@
 FROM python:3.7.1
 VOLUME app
-RUN ls -l
+RUN cat requirements.txt
 COPY . /app
-RUN ls -l
 WORKDIR app
 RUN pwd
 RUN pip install --upgrade pip
