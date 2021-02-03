@@ -1,8 +1,8 @@
 FROM openshift/python:latest
 RUN chmod -R 777 ./
 VOLUME app
-RUN cat requirements.txt
 COPY . /app
+RUN ls
 WORKDIR app
 RUN pwd
 RUN pip install --upgrade pip
