@@ -2,7 +2,6 @@ FROM alpine:3.5
 RUN apk update
 RUN apk add git
 RUN apk add --no-cache python3 py3-pip
-RUN chmod -R 777 ./
 VOLUME app
 WORKDIR app
 RUN  ls -la
@@ -12,5 +11,6 @@ RUN pwd
 RUN pip install --upgrade pip
 ENV HOST="0.0.0.0"
 RUN pip install -r requirements.txt
+RUN chmod -R 777 ./
 EXPOSE 5000
 CMD python ./app.py
