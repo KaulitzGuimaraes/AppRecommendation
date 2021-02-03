@@ -1,10 +1,13 @@
-FROM openshift/python:latest
+FROM alpine:3.5
+RUN apk update
+RUN apk add git
+RUN apk add --no-cache python3 py3-pip
 RUN chmod -R 777 ./
 VOLUME app
-RUN ls -la
-COPY . /app
-RUN  ls -la
 WORKDIR app
+RUN  ls -la
+RUN git clone https://github.com/KaulitzGuimaraes/AppRecommendation.git
+WORKDIR app-project
 RUN pwd
 RUN pip install --upgrade pip
 ENV HOST="0.0.0.0"
