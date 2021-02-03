@@ -8,9 +8,9 @@ RUN  ls -la
 RUN git clone https://github.com/KaulitzGuimaraes/AppRecommendation.git
 WORKDIR app-project
 RUN pwd
-RUN pip install --upgrade pip
+RUN python3 -m pip install --upgrade pip
 ENV HOST="0.0.0.0"
-RUN pip install -r requirements.txt
+RUN python3 -m pip install -r requirements.txt
 RUN chmod -R 777 ./
 EXPOSE 5000
 CMD python ./app.py
