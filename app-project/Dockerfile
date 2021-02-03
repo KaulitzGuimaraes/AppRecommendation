@@ -1,4 +1,4 @@
-FROM python:3.7.1
+FROM openshift/python:latest
 VOLUME app
 RUN cat requirements.txt
 COPY . /app
